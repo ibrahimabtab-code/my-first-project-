@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>PythonSikho</title>
+<style>
+:root{--bg:#101827;--panel:#182337;--card:#202f46;--green:#5de0a2;--text:#f4f7fb;--muted:#b8c4d6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px system-ui,Arial,sans-serif}
+header{padding:25px 20px 22px;background:linear-gradient(135deg,#132a3b,#174a43)}
+.brand{font-size:28px;font-weight:800;letter-spacing:-.5px}.brand span{color:var(--green)}
+header p{color:#d3e4e2;margin:8px 0 0;line-height:1.5}.wrap{max-width:760px;margin:auto;padding:18px}
+.pill{display:inline-block;border:1px solid #456273;border-radius:30px;padding:5px 10px;font-size:12px;color:#d4f8e8;margin-top:14px}
+h2{font-size:20px;margin:24px 0 12px}.card{background:var(--panel);border:1px solid #2b3c53;border-radius:16px;padding:16px;margin:12px 0}
+.card h3{margin:0 0 8px;font-size:17px}.muted{color:var(--muted);line-height:1.55}.btn{border:0;border-radius:11px;padding:11px 14px;font-size:15px;font-weight:700;background:var(--green);color:#10221b;cursor:pointer;margin:5px 5px 0 0}
+.btn.secondary{background:#2b3d54;color:var(--text);border:1px solid #42536a}.lesson{display:flex;align-items:flex-start;gap:12px}.num{background:#244b46;color:var(--green);border-radius:10px;padding:9px 11px;font-weight:800}
+code,pre{font-family:ui-monospace,Consolas,monospace}pre{white-space:pre-wrap;background:#0a111c;border:1px solid #29394d;border-radius:10px;padding:13px;color:#a8f0ca;overflow:auto}
+footer{text-align:center;color:#8fa0b5;font-size:12px;padding:28px 10px}.status{font-size:13px;color:#f7d28b;margin-top:10px}
+</style>
+</head>
+<body>
+<header><div class="brand">🐍 Python<span>Sikho</span></div>
+<p>Python seekho, asaan Roman English mein.<br>Read it. Listen to it. Practise it.</p>
+<div class="pill">STARTER VERSION · OFFLINE LESSONS</div></header>
+<main class="wrap">
+<section class="card">
+<h3>🤖 Robot Teacher</h3>
+<p class="muted">Lesson ke saath speaker button dabao. Voice phone ke Text-to-Speech engine se chalegi. Roman Urdu words ka pronunciation har phone par perfect nahi ho sakta.</p>
+<button class="btn" onclick="speakText('Welcome to Python Sikho. Aaj hum Python ka pehla lesson seekhenge.')">▶ Test voice</button>
+<button class="btn secondary" onclick="openVoiceSettings()">⚙ Voice settings</button>
+<div id="voiceStatus" class="status">Checking phone voice…</div>
+</section>
+<h2>📚 Learn Python</h2>
+<div class="card lesson"><div class="num">01</div><div><h3>What is Python?</h3><p class="muted" id="lesson1">Python aik programming language hai. Hum Python se computer ko instructions de sakte hain.</p><button class="btn" onclick="speakText(document.getElementById('lesson1').innerText)">🔊 Listen</button></div></div>
+<div class="card lesson"><div class="num">02</div><div><h3>Your First Program</h3><p class="muted" id="lesson2">print function screen par text show karta hai. Chalo apna pehla program dekhein.</p><pre>print("Hello, World!")</pre><button class="btn" onclick="speakText(document.getElementById('lesson2').innerText)">🔊 Listen</button></div></div>
+<div class="card lesson"><div class="num">03</div><div><h3>Variables</h3><p class="muted" id="lesson3">Variable aik box ki tarah hota hai jisme hum value store kar sakte hain.</p><pre>student_name = "Ali"
+print(student_name)</pre><button class="btn" onclick="speakText(document.getElementById('lesson3').innerText)">🔊 Listen</button></div></div>
+<section class="card"><h3>💻 Python Practical IDE</h3><p class="muted">Yeh starter build mein abhi sample code hai. Real offline Python code run karne ke liye aglay phase mein Python interpreter integrate aur test karna hoga.</p><button class="btn secondary" onclick="alert('Python IDE next development phase mein add hogi. Abhi yeh button demo hai.')">Open Practical IDE</button></section>
+<section class="card"><h3>✨ Next features</h3><p class="muted">Quizzes · Progress tracker · Bookmarks · Full offline Python interpreter · More Roman English lessons</p></section>
+</main>
+<footer>PythonSikho · Version 0.1.0 · Learning starts here</footer>
+<script>
+function speakText(text){
+  if(window.AndroidVoice){window.AndroidVoice.speak(String(text));}
+  else if('speechSynthesis' in window){let u=new SpeechSynthesisUtterance(text);u.lang='en-US';speechSynthesis.speak(u);}
+  else {alert('Is device par Text-to-Speech available nahi hai. Voice settings check karein.');}
+}
+function openVoiceSettings(){if(window.AndroidVoice){window.AndroidVoice.openVoiceSettings();}else{alert('Phone ki Text-to-Speech settings check karein.');}}
+window.setVoiceStatus=function(ok){const e=document.getElementById('voiceStatus');e.textContent=ok?'Voice ready (phone TTS). Offline support installed voice par depend karti hai.':'Suitable English voice nahi mili. Voice settings khol kar English voice install karein.';};
+</script>
+</body></html>
